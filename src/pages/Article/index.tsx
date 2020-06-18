@@ -21,7 +21,7 @@ const Index: FC<any> = props => {
   const onEdit = (record: { id: any }) => {
     props.history.push(`/articleEdit/${record.id}`);
   };
-  const onDelete = record => {
+  const onDelete = (record: { id: any }) => {
     Modal.confirm({
       title: '确定删除吗',
       width: 520,
@@ -31,7 +31,7 @@ const Index: FC<any> = props => {
           payload: {
             id: record.id,
           },
-        }).then(res => {
+        }).then((res: { code: string; msg: any }) => {
           console.log(res);
 
           if (res.code === '0') {
@@ -49,12 +49,14 @@ const Index: FC<any> = props => {
   };
   const columns = [
     {
+      key: 'title',
       title: '标题',
       width: '150',
       align: 'center',
       dataIndex: 'title',
     },
     {
+      key: 'datetime',
       title: '日期',
       width: '150',
       align: 'center',
@@ -64,6 +66,7 @@ const Index: FC<any> = props => {
       ),
     },
     {
+      key: 'datatime',
       title: '操作',
       width: '150',
       align: 'center',
@@ -107,7 +110,8 @@ const Index: FC<any> = props => {
   );
 };
 
-function mapStateToProps({ article, loading }) {
+function mapStateToProps(mapState: any) {
+  const { article, loading } = mapState;
   return {
     article,
     queryListLoading: loading.effects['article/queryDetailList'],

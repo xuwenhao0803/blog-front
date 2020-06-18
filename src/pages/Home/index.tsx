@@ -3,7 +3,12 @@ import { connect } from 'dva';
 import moment from 'moment';
 import styles from './index.less';
 
-const Index: FC<any> = props => {
+interface homeInterface {
+  dispatch: any;
+  article: { articleList: { [key: string]: any }[] };
+}
+
+const Index: FC<homeInterface> = props => {
   useEffect(() => {
     const { dispatch } = props;
 
@@ -48,7 +53,8 @@ const Index: FC<any> = props => {
   );
 };
 
-function mapStateToProps({ article, loading }) {
+function mapStateToProps(mapState: any) {
+  const { article, loading } = mapState;
   return {
     article,
     queryListLoading: loading.effects['article/queryList'],
