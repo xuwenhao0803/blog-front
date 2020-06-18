@@ -38,10 +38,14 @@ export async function getUserInfo(params: any) {
       headers: { Authorization: `bearer ${token}` },
     })
     .then(res => {
+      console.log(res);
+
       data = res.data;
     })
     .catch(error => {
-      return error;
+      Cookie.remove('token');
+      location.reload();
+      data = error.response.data;
     });
   return data;
 }

@@ -34,13 +34,16 @@ export default {
     },
     *getUserInfo({ payload }, { call, put }) {
       const result = yield call(getUserInfo, payload);
-      yield put({
-        type: 'updateState',
-        payload: {
-          username: result.data.name,
-          imgUrl: result.data.head_img,
-        },
-      });
+      console.log(result);
+      if (result.code === '0') {
+        yield put({
+          type: 'updateState',
+          payload: {
+            username: result.data.name,
+            imgUrl: result.data.head_img,
+          },
+        });
+      }
     },
     *toLogin({ payload }, { call, put }) {
       const result = yield call(toLogin, payload);

@@ -21,14 +21,14 @@ const Index: FC<any> = props => {
           {articleList &&
             articleList.map(item => {
               return (
-                <div className={styles.homeList}>
+                <div key={item.id} className={styles.homeList}>
                   <a
                     style={{ marginLeft: '10px' }}
                     onClick={() => {
                       window.open(`/detail/${item.id}`);
                     }}
                   >
-                    {item.title}
+                    <span>{item.title}</span>
                   </a>
                   <div
                     style={{
