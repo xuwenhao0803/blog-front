@@ -1,4 +1,4 @@
-export const queryurl = 'http://localhost:3000';
+export const queryurl = 'http://114.55.104.100:3000';
 import axios from 'axios';
 import Cookie from 'js-cookie';
 
